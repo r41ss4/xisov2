@@ -92,3 +92,15 @@ CREATE TABLE payout (
     external_id CHAR(40), UNIQUE, NOT NULL, DEFAULT(UUID()),
     payout_date TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 )
+
+-- Create leger for all transactions
+CREATE TABLE ledger (
+    ledger_id CHAR(40) PRIMARY KEY,
+    usd_account_id CHAR(15), NOT NULL,
+    amount DECIMAL(15,2), NOT NULL, 
+    -- 'payin', 'payout', 'deposit'
+    transaction_type VARCHAR(50),
+    -- id from original table
+    transaction_id CHAR(40),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

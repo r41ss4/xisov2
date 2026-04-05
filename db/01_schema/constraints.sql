@@ -25,4 +25,11 @@ ALTER TABLE payout ADD FOREIGN KEY (provider_id) REFERENCES financial_provider (
 ALTER TABLE payout ADD FOREIGN KEY (usd_account_id) REFERENCES usd_accounts (usd_account_id);
 
 
+-- Foreign keys of leger
+ALTER TABLE ledger ADD FOREIGN KEY (usd_account_id) REFERENCES usd_accounts (usd_account_id);
+ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES payout (payout_id);
+ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES payin (payin_id);
+ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES deposit (deposit_id);
+
+
 

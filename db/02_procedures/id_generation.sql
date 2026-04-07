@@ -1,3 +1,6 @@
+-- STEP: 02_procedures
+-- PURPOSE: create procedures for all db
+
 -- Create produres needed when users create an account
 -- Create stored procedure to generate a unique 15-digit user_id
 DELIMITER //
@@ -107,6 +110,8 @@ DELIMITER ;
 
 -- Create elements needed when users create a transaction (payin, payout or deposit)
 -- Create stored procedure to generate a unique 40 digit and letter id for transactions
+DELIMITER //
+
 CREATE PROCEDURE generate_trans_id(OUT new_trans_id CHAR(40))
 BEGIN
     DECLARE found_id CHAR(40);

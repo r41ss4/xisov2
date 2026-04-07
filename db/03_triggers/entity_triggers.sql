@@ -1,3 +1,6 @@
+-- STEP: 03_triggers
+-- PURPOSE: create triggers for merchants and providers
+
 -- Create trigger needed for inserts in financial provider id
 -- Create trigger for id for financial_provider
 DELIMITER //
@@ -42,3 +45,4 @@ BEGIN
 
 
 END//
+DELIMITER ;

@@ -1,10 +1,10 @@
--- Basic Seed for DB
--- insert user, provider, merchant, transactions
+-- STEP: 04_seeds
+-- PURPOSE: create seed for basic testing
 
 -- INSERT main entities
 -- INSERT user info in users table
-INSERT INTO users (user_name, user_lastname, phone, nacional_id, birthdate) 
-VALUES ('Tester', 'Testty', '598678778', '73520962', '1999-04-11');
+INSERT INTO users (user_name, user_lastname, email, phone, national_id, birthdate) 
+VALUES ('Tester', 'Testty', 'hi@faky.com', '598678778', '73520962', '1999-04-11');
 
 
 -- INSERT provider info in financial_provider table
@@ -22,7 +22,7 @@ VALUES ('Acme Corp', 'Retail', 10000.00, 'USD', 2);
 -- SET usd_account_id of new user to reuse
 SELECT usd_account_id 
 INTO @test_usd_account_id 
-FROM usd_account
+FROM usd_accounts
 WHERE user_id = (
     SELECT user_id 
     FROM users 
@@ -62,7 +62,7 @@ WHERE provider_id = (
 INSERT INTO payin (usd_account_id, amount, currency, provider_id, provider_name, provider_fee)
 VALUES (
     @test_usd_account_id, 
-    45.00, 'USD', 
+    3000.00, 'USD', 
     @test_provider_id, 
     'VISA', 675
 );
@@ -70,12 +70,12 @@ VALUES (
 
 -- INSERT payout transactions
 -- Use the usd_account_id and provider_id automatically generated from previous inserts
-INSERT INTO payout (usd_account_id, amount, currency, provider_id, provider_name, provider_fee) 
+INSERT INTO payout (usd_account_id, amount, currency, provider_id, provider_name) 
 VALUES (
     @test_usd_account_id, 
     30.00, 'USD', 
     @test_provider_id, 
-    'VISA', 10
+    'VISA'
 );
 
 

@@ -1,3 +1,6 @@
+-- STEP: 03_triggers
+-- PURPOSE: create user triggers
+
 -- Create triggers needed when users create an account
 -- Create trigger to generate user_id  and usd_account_id before insert
 DELIMITER //
@@ -24,6 +27,8 @@ BEGIN
 
 END//
 
+DELIMITER ;
+
 -- Create trigger to cascade info when user creates an account
 DELIMITER //
 
@@ -31,26 +36,6 @@ CREATE TRIGGER after_user_insert
 AFTER INSERT ON users
 FOR EACH ROW
 BEGIN
-
-    -- Insert into user_cards
-    INSERT INTO user_cards (
-        user_id,
-        provider_id,
-        method_name,
-        card_num,
-        cvv_num,
-        card_name,
-        card_lastname
-    ) VALUES (
-        NEW.user_id,
-        -- Default values, adjust as needed
-        0,       
-        '',
-        0, 
-        0,
-        '',
-        ''
-    );
 
      -- Insert into usd_accounts
     INSERT INTO usd_accounts (

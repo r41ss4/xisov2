@@ -1,5 +1,7 @@
+-- STEP: 03_triggers
+-- PURPOSE: create triggers for transactions
 
--- Create triggers needed when users create a transaction (payin, payout or deposit)
+-- Create triggers needed when users create a transaction as payin, payout or deposit
 -- Create trigger for id for payin
 DELIMITER //
 
@@ -67,7 +69,7 @@ BEGIN
 
     -- Insert into ledger
     INSERT INTO ledger (
-        ledger_id
+        ledger_id,
         usd_account_id,
         transaction_id,
         amount,
@@ -94,7 +96,7 @@ BEGIN
 
     -- Insert into ledger
     INSERT INTO ledger (
-        ledger_id
+        ledger_id,
         usd_account_id,
         transaction_id,
         amount,

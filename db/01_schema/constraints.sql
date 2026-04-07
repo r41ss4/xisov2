@@ -1,5 +1,5 @@
--- Foreig keys
--- Alter tables for foreign keys and references
+-- STEP: 01_schema
+-- PURPOSE: create foreign keys
 
 -- Foreign keys of user_cards
 ALTER TABLE user_cards ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
@@ -27,9 +27,6 @@ ALTER TABLE payout ADD FOREIGN KEY (usd_account_id) REFERENCES usd_accounts (usd
 
 -- Foreign keys of leger
 ALTER TABLE ledger ADD FOREIGN KEY (usd_account_id) REFERENCES usd_accounts (usd_account_id);
-ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES payout (payout_id);
-ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES payin (payin_id);
-ALTER TABLE ledger ADD FOREIGN KEY (transaction_id) REFERENCES deposit (deposit_id);
 
 
 

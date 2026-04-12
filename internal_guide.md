@@ -89,6 +89,17 @@
     - `payout_date`: Timestamp of when the payout occurred.
 
 **Primary Key**: `payout_id` 
+
+### Table: Ledger
+*   **Ledger**: Applies double-entry bookeeping accounting principle to track users balance. It registers all payouts, payin, deposits by users to consolidate current user balance 
+    - `ledger_id`: Unique identifier for the ledger transaction (40 characters).
+    - `usd_account_id`: The USD account ID (15 characters) involved in the payout. Foreign key referencing `usd_accounts(usd_account_id)`.
+    - `amount`: The amount of the payout.
+    - `transaction_type`: Mirrows if transaction came from payin, payout or deposit
+    - `transaction_id`: Transaction actual id from original table. Foreign key referencing either `payin(payin_id)`, `payout(payout_id)` or `deposit(deposit_id)`.
+    - `created at`: Timestamp of when the transaction occurred.
+
+**Primary Key**: `ledger_id` 
    
 ### Table: Merchant 
 *   **Merchant**: Any business partner that accepts deposits in exchange of their goods and services. 
@@ -148,10 +159,5 @@
 ## Tables and structure  
 ### Diagram made in dbdiagram.oi
 <p>
-    <img src="/db_visualization/xiso_dbmldiagram.png" width="800" height="800" />
-</p>    
-
-### ERR Diagram
-<p>
-    <img src="/db_visualization/xiso_errdiagram.png" width="800" height="800" />
+    <img src="visualization/xiso_dbmldiagram.png" width="800" height="800" />
 </p>    

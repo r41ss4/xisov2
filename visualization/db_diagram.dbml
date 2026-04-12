@@ -2,7 +2,7 @@
 // Docs: https://dbml.dbdiagram.io/docs
 
 // Users data is distribute in three tables: user, user_kyc and user_cards
-Table user {
+Table users {
   user_id varchar [primary key]
   user_name varchar [not null]
   user_lastname varchar [not null]
@@ -11,20 +11,7 @@ Table user {
   nacional_id varchar [not null, unique]
   birthdate date [not null]
 }
-Ref: user.user_id - user_kyc.user_id
-
-Table user_kyc {
-  user_id varchar [primary key]
-  user_name varchar [not null]
-  user_lastname varchar [not null]
-  nacional_id varchar [not null, unique]
-  email varchar [not null, unique]
-  address varchar [not null]
-  birthday date [not null]
-  phone varchar [not null, unique]
-}
-Ref: user_kyc.user_id < user_cards.user_id
-Ref: user.user_id < user_cards.user_id
+Ref: users.user_id - user_cards.user_id
 
 Table user_cards {
   user_id varchar [primary key]
@@ -36,6 +23,7 @@ Table user_cards {
   card_lastname varchar [not null]
 }
 
+
 // User have a local currency account and a usd account
 Table usd_accounts {
   usd_account_id varchar [primary key]
@@ -45,8 +33,8 @@ Table usd_accounts {
   user_name varchar [not null]
   user_lastname varchar [not null]
 }
-Ref: user.user_id - usd_accounts.user_id
-Ref: user.usd_account_id - usd_accounts.usd_account_id
+Ref: users.user_id - usd_accounts.user_id
+Ref: users.usd_account_id - usd_accounts.usd_account_id
 
 // There are three type of transaction a user can do: deposit, payin or payout
 Table deposit { 
@@ -86,6 +74,19 @@ Table payout {
   payout_date timestamp [not null]
 }
 Ref: payout.usd_account_id - usd_accounts.usd_account_id
+
+Table ledger { 
+  ledger_id varchar [primary key]
+  usd_account_id varchar [not null]
+  amount decimal [not null]
+  transaction_id varchar [not null, unique]
+  transaction_type varchar [not null]
+  created_at date [not null]
+}
+Ref: ledger.transaction_id - payout.payout_id
+Ref: ledger.transaction_id - payin.payin_id
+Ref: ledger.transaction_id - deposit.deposit_id
+
 
 // There are two main type of third parties this application can interact with: merchants and financial providers
 Table merchant {

@@ -1,5 +1,6 @@
 -- STEP: 04_seeds
 -- PURPOSE: create seed for edge testing
+-- COMMAND: SOURCE db/04_seeds/seed_edge_cases.sql;
 
 -- SET variables from seed_basic.sql
 -- SET usd_account_id of new user to reuse

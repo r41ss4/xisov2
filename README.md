@@ -36,7 +36,48 @@ deposit 1       -100.00
 ## Project structure
 It is primary divided into four main folders as **[db](https://github.com/r41ss4/xisov2/tree/main/db)**, **[docker](https://github.com/r41ss4/xisov2/tree/main/docker)**, **[python](https://github.com/r41ss4/xisov2/tree/main/python)** and **[scripts](https://github.com/r41ss4/xisov2/tree/main/scripts)**, each one containinig multiple files relevant for the project functionalities. 
 
-
+```bash
+xisov2
+│           
+├── db/         
+│   ├── 01_schema/     
+│   │   ├── tables.sql  
+│   │   └── constraints.sql  
+│   ├── 02_procedures/  
+│   │   └── id_generation.sql   
+│   ├── 03_triggers/
+│   │   ├── entity_triggers.sql  
+│   │   ├── transaction_triggers.sql
+│   │   └── user_triggers.sql
+│   ├── 04_seeds/
+│   │   ├── seed_basic.sql 
+│   │   ├── seed_edge_cases.sql
+│   │   └── seed_heavy_users.sql
+│   ├── 05_analytics/
+│   │   ├── transaction_summary.sql
+│   │   └── user_balance.sql
+│   └── 06_build/ 
+│       └── build.sql
+│                       
+├── python/                     
+│   ├── analysis.py     
+│   ├── db.py                
+│   ├── queries.py               
+│   └── main.py   
+│
+├── scripts/                     
+│   └── build.sh  
+│  
+├── docker/                     
+│   └── Dockerfile                
+│  
+├── visualization/ 
+│   ├── db_diagram.dbml               
+│   └── xiso_dbmldiagram.png  
+│       
+├── internal_guide.md               
+└── README.md    
+```
 
 ### Database and structure
 

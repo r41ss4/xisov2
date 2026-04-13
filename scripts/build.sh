@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Run from root: chmod +x scripts/build.sh in terminal to give permission first
-# COMMAND: ./scripts/build.sh
-# COMMAND (once build.sql is created): mysql -u root -p < db/build/build.sql
+# Echo for debug
 echo "Building SQL file..."
 
 # Concat content from all these files and put them in db/build/build.sql
@@ -15,7 +13,7 @@ db/03_triggers/user_triggers.sql \
 db/03_triggers/transaction_triggers.sql \
 db/03_triggers/entity_triggers.sql \
 db/04_seeds/seed_basic.sql \
-> db/build/build.sql
+> db/06_build/build.sql
 
 # Echo to verify 
 echo "Done: build.sql created at db/build/build.sql"

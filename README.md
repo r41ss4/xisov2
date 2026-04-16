@@ -10,6 +10,9 @@ To run db and analysis in a fast manner:
 chmod +x scripts/build.sh
 ./scripts/build.sh
 
+# Run build.sql in mysql
+mysql -u root -p < db/build/build.sql
+
 # Run Python analysis
 python python/main.py
 ```
